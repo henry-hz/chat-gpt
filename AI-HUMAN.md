@@ -1,3 +1,8 @@
+## How chat-GPT model works ?
+
+ChatGPT is a variation of the GPT (Generative Pretrained Transformer) architecture, which is based on the transformer architecture introduced in the paper "Attention is All You Need". It is an autoregressive language model that uses deep learning to generate text. The model is trained on a large corpus of text data to predict the next word in a sentence, given the previous words as input. During inference, the model can generate coherent and coherent text by sampling the predicted words one at a time, starting from a prompt provided by the user. The model can be fine-tuned for specific tasks, such as answering questions or generating creative writing, by training on task-specific data.
+
+
 ## What is "sampling the predicted words one at a time" means ? give an example
 
 "Sampling the predicted words one at a time" refers to a process in natural language processing (NLP) where a language model predicts the next word in a sequence by selecting from a probability distribution over all possible words, taking the most likely word, and then using that as input to generate the next word, and so on.
