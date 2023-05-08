@@ -133,3 +133,31 @@ I runned the "function add(x: int, y: int) returns (z: int)
 I apologize for the mistake in my previous response. You are correct that the modified add function I provided in my previous response actually satisfies the postcondition z == x + y. Therefore, the implication statement where the antecedent is false and the consequent is true does not hold in this case.
 
 However, the underlying point still remains: using logical implications to check the correctness of programs can help to identify cases where the implementation and the specification are not aligned, and can help to prevent bugs and errors. In this case, if we had a more complex program where a misalignment between the specification and the implementation was more difficult to detect, using logical implications could help to catch such a misalignment.
+
+
+Here is an example of a formal specification using implication in Dafny. Suppose we have a function that takes an array of integers and returns the index of the first occurrence of a negative number, or -1 if no negative number is found:
+
+```dafny
+function findNegative(a: array<int>) returns (i: int)
+  ensures -1 <= i && i < a.Length && a[i] < 0 ==> forall j | 0 <= j < i :: a[j] >= 0;
+{
+  i := 0;
+  while i < a.Length && a[i] >= 0
+    invariant -1 <= i && i <= a.Length;
+  {
+    i := i + 1;
+  }
+  if i == a.Length {
+    i := -1;
+  }
+}
+```
+
+The postcondition of the findNegative function is an implication statement that states that if the function returns a non-negative index i such that a[i] < 0, then all elements of the array before index i are non-negative.
+
+This implication statement is useful because it specifies a necessary condition for the function to be correct. If the function were to return an index i such that a[i] < 0 and there exists an element a[j] with 0 <= j < i such that a[j] < 0, then the function would not satisfy the postcondition. By using implication to specify this necessary condition, we can catch such errors during verification and ensure that the function satisfies the specification.
+
+
+
+
+
